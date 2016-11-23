@@ -1,7 +1,6 @@
 Django==1.10.3
 chardet==2.2.1
 colorama==0.2.5
-defer==1.0.6
 gunicorn==19.6.0
 html5lib==0.999
 httplib2==0.8
