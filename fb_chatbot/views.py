@@ -9,6 +9,9 @@ from django.utils.decorators import method_decorator
 PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMhFtXDqSYiGYxxu3ifz6y2gsOgyURgJo23ZCOLZBagXjZBq9ZACWYwoQhJ4KXIZCLZA2mdD5ZClwVBchR2aveN8Nbhk7TYQCtYOuoBe3IgzeWmP8melmOEvzDPPqj8QNy4ZAmzZAhPcLW7z64zOr09Na2VbH3bmsvgZDZD"
 VERIFY_TOKEN = "2318934571"
 
+def index(request):
+	return HttpResponse("Bonjour, le monde")
+
 def post_facebook_message(fbid, received_message):
 	post_message_url = 'https://graph.facebook.com/v2.5/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
 	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
