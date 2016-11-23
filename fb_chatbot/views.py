@@ -11,7 +11,7 @@ VERIFY_TOKEN = "2318934571"
 
 def post_facebook_message(fbid, received_message):
 	post_message_url = 'https://graph.facebook.com/v2.5/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
-	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":"Hello"}})
+	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message})
 	status = requests.post(post_message_url, headers = {'Content-Type': 'application/json'},data=response_msg)
 	print(status.json())
 
