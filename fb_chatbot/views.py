@@ -20,10 +20,13 @@ def post_facebook_message(fbid, received_message):
 
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
-		if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
-			return HttpResponse(self.request.GET['hub.challenge'])
-		else:
-			return HttpResponse("Bonjour, erreur jeton invalide")
+		try:
+			if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
+				return HttpResponse(self.request.GET['hub.challenge'])
+			else:
+				return HttpResponse("Bonjour, erreur jeton invalide")
+		except Exception, e:
+			return HttpResponse("Cannot get the value token")
 	@method_decorator(csrf_exempt)
 	def dispatch(self, request, *args, **kwargs):
 		return generic.View.dispatch(self,request,*args,**kwargs)
