@@ -1,1 +1,1 @@
-web: gunicorn fbchatbot.wsgi --log--file -
+web: gunicorn fbchatbot.wsgi --log-file -
