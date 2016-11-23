@@ -1,5 +1,5 @@
 Django==1.10.3
-apturl==0.5.2ubuntu4
+//apturl==0.5.2ubuntu4
 chardet==2.2.1
 colorama==0.2.5
 command-not-found==0.3
