@@ -26,7 +26,6 @@ class FbBotView(generic.View):
 			else:
 				return HttpResponse("Bonjour, erreur jeton invalide")
 		except Exception as e:
-			print(e.message)
 			return HttpResponse("Cannot get the value token")
 	@method_decorator(csrf_exempt)
 	def dispatch(self, request, *args, **kwargs):
