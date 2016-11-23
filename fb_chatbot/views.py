@@ -6,8 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = ""
-VERIFY_TOKEN = ""
+PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMhFtXDqSYiGYxxu3ifz6y2gsOgyURgJo23ZCOLZBagXjZBq9ZACWYwoQhJ4KXIZCLZA2mdD5ZClwVBchR2aveN8Nbhk7TYQCtYOuoBe3IgzeWmP8melmOEvzDPPqj8QNy4ZAmzZAhPcLW7z64zOr09Na2VbH3bmsvgZDZD"
+VERIFY_TOKEN = "2318934571"
 
 def post_facebook_message(fbid, received_message):
 	post_message_url = 'https://graph.facebook.com/v2.6/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
