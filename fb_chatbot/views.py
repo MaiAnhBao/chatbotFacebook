@@ -27,7 +27,7 @@ def post_facebook_message(fbid, received_message):
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
 		try:
-			if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
+			if self.request.GET['hub.mode'] == 'subscribe' and self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
 				return HttpResponse(self.request.GET['hub.challenge'])
 			else:
 				return HttpResponse("Bonjour, erreur jeton invalide")
@@ -42,6 +42,7 @@ class FbBotView(generic.View):
 		for entry in incoming_message['entry']:
 			for message in entry['messaging']:
 				if 'message' in message:
+					print("============= Process ========")
 					print(message)
 					try:
 						receivedMsg = message['message']
