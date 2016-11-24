@@ -43,5 +43,9 @@ class FbBotView(generic.View):
 			for message in entry['messaging']:
 				if 'message' in message:
 					print(message)
+					try:
+						receivedMsg = message['message'
+					except ValueError:
+						print("Decode error")
 					post_facebook_message(message['sender']['id'],message['message']['text'])
 		return HttpResponse()
