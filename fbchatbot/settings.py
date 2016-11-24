@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-2r9b64w#9j38v&j$4jn2iro-c6)o5*5^vy+c+g7cjwx0+0v%m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False 
 
 ALLOWED_HOSTS = ['192.168.81.27','damp-peak-40119.herokuapp.com']
 
@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-		os.path.join(BASE_DIR, 'template')
+		os.path.join(BASE_DIR, 'templates')
 	],
         'APP_DIRS': True,
         'OPTIONS': {
