@@ -10,7 +10,7 @@ from .config import configParams
 
 cfg = configParams()
 
-PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMhFtXDqSYiGYxxu3ifz6y2gsOgyURgJo23ZCOLZBagXjZBq9ZACWYwoQhJ4KXIZCLZA2mdD5ZClwVBchR2aveN8Nbhk7TYQCtYOuoBe3IgzeWmP8melmOEvzDPPqj8QNy4ZAmzZAhPcLW7z64zOr09Na2VbH3bmsvgZDZD"
+PAGE_ACCESS_TOKEN = cfg.PAGE_ACCESS_TOKEN
 VERIFY_TOKEN = cfg.VALIDATION_TOKEN
 
 def index(request):
