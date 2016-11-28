@@ -39,6 +39,7 @@ class FbBotView(generic.View):
 
 	def post(self,request,*args,**kwargs):
 		incoming_message = json.loads(self.request.body.decode('utf-8'))
+		print("incoming message", incoming_message)
 		for entry in incoming_message['entry']:
 			for message in entry['messaging']:
 				if 'message' in message:
