@@ -63,6 +63,7 @@ class FbBotView(generic.View):
 	def post(self,request,*args,**kwargs):
 		incoming_message = json.loads(self.request.body.decode('utf-8'))
 		print("incoming message", incoming_message)
+		recipient = incoming_message['recipient']['id']
 		for entry in incoming_message['entry']:
 			for message in entry['messaging']:
 				if 'message' in message:
@@ -74,6 +75,5 @@ class FbBotView(generic.View):
 						print("Decode error")
 					print("sender: ", message['sender']['id'])
 					print("msg: ", message['message']['text'])
-					print("recipient: ", message['recipient']['id']
-					post_facebook_message(message['sender']['id'],message['message']['text'])
+					post_facebook_message(recipient,message['message']['text'])
 		return HttpResponse()
