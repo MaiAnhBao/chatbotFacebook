@@ -7,7 +7,8 @@ from django.utils.decorators import method_decorator
 from django.template import Context, loader
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMhFtXDqSYiGYxxu3ifz6y2gsOgyURgJo23ZCOLZBagXjZBq9ZACWYwoQhJ4KXIZCLZA2mdD5ZClwVBchR2aveN8Nbhk7TYQCtYOuoBe3IgzeWmP8melmOEvzDPPqj8QNy4ZAmzZAhPcLW7z64zOr09Na2VbH3bmsvgZDZD"
+PAGE_ACCESS_TOKEN = ""
+
 VERIFY_TOKEN = "password_is_password"
 
 def index(request):
