@@ -76,5 +76,5 @@ class FbBotView(generic.View):
 					print("sender: ", message['sender']['id'])
 					print("msg: ", message['message']['text'])
 					print("recipient ", message['recipient']['id'])
-					post_facebook_message(message['recipient']['id'],message['message']['text'])
+					post_facebook_message(message['sender']['id'],message['message']['text'])
 		return HttpResponse()
