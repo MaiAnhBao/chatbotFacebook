@@ -3,7 +3,7 @@ from django.conf.urls import include, url, handler404
 from .views import FbBotView
 from . import views
 urlpatterns = [
-		url(r'^test/?$', FbBotView.as_view()),
+		url(r'^webhook/?$', FbBotView.as_view()),
 		url(r'^$', views.index),
 		]
 
