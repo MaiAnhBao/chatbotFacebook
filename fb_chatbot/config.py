@@ -1,5 +1,0 @@
-class configParams:
-	PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMZAM5SBxj9YUkyLhqPblOvISMKYjtxhZBsmGo0ksshZAdT8cc3YUywGZAxQM99H4i7E6T3Fo6TLTYMcO9Jbq4jZCZAuSCiZBitTPswlwhUveHIdnom8HdKaMssKl4QcOmsfFIKNuyoSobcxgwIXJSzcec7OQSUgwZDZD"
-	APP_SECRET = ""
-	VALIDATION_TOKEN = "password_is_password"
-	SERVER_URL = ""
