@@ -19,7 +19,7 @@ def error404(request):
 	return HttpResponse(content=template.render(context), content_type='text/html;charset=utf8', status=404)
 
 def post_facebook_message(fbid, received_message):
-	post_message_url = 'https://graph.facebook.com/v2.5/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
+	post_message_url = 'https://graph.facebook.com/v2.6/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
 	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
 	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=response_msg)
 	print(status.json())
