@@ -1,14 +1,17 @@
-import json, requests, random, re
+import json, requests, random, re, hashlib
 from django.shortcuts import render
 from django.views import generic
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.template import Context, loader
+from .config import configParams
 # Create your views here.
 
+cfg = configParams()
+
 PAGE_ACCESS_TOKEN = "EAAMYeSx5DKEBAMhFtXDqSYiGYxxu3ifz6y2gsOgyURgJo23ZCOLZBagXjZBq9ZACWYwoQhJ4KXIZCLZA2mdD5ZClwVBchR2aveN8Nbhk7TYQCtYOuoBe3IgzeWmP8melmOEvzDPPqj8QNy4ZAmzZAhPcLW7z64zOr09Na2VbH3bmsvgZDZD"
-VERIFY_TOKEN = "password_is_password"
+VERIFY_TOKEN = cfg.VALIDATION_TOKEN
 
 def index(request):
 	return HttpResponse("Bonjour, le monde")
@@ -18,6 +21,23 @@ def error404(request):
 	context = Context({"message":"All: %s" % request,})
 	return HttpResponse(content=template.render(context), content_type='text/html;charset=utf8', status=404)
 
+def verifyRequestSignature(request, response, buf):
+	signature = request.headers['x-hub-signature']
+
+	if not signature:
+		print("Couldn't validate the signature")
+	else:
+		elements = signature.splits('=')
+		method = elements[0]
+		signatureHash = elements[1]
+
+		m = hashlib.sha1()
+		m.update(APP_SECRET)
+		expectedHash = m.hexdigest()
+#		expectedHash = hmac.new(APP_SECRET,signatureHash,sha1).digest().encode("base64").rstrip('\n')
+		if signatureHash != expectedHash:
+			print("Couldn't validate the request signature")
+	
 def post_facebook_message(fbid, received_message):
 	post_message_url = 'https://graph.facebook.com/v2.6/me/message?access_token=%s'%PAGE_ACCESS_TOKEN 
 	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
