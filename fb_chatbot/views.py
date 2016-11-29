@@ -5,8 +5,8 @@ from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.template import Context, loader
-from config import configParams
-from message import Message
+from .config import configParams
+from .message import Message
 # Create your views here.
 
 cfg = configParams()
