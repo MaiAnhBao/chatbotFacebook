@@ -52,6 +52,3 @@ class Message:
         self.messageData['message']['text'] = messageText
         del self.messageData['message']['attachment']
 
-msg = Message("111")
-msg.sendTypingOff()
-print(msg.messageData)
