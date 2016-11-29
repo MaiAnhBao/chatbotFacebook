@@ -39,16 +39,15 @@ def verifyRequestSignature(request, response, buf):
 		if signatureHash != expectedHash:
 			print("Couldn't validate the request signature")
 	
-def post_facebook_message(fbid, received_message):
+def post_facebook_message(received_message):
 #	user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid
 #	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
 #	user_details = requests.get(user_details_url,user_details_params).json()
 	post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN 
-	response_msg = Message(fbid)
-	response_msg.makeTextMessage("How do you turn this on?")
+	
 #	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
-	print("Send message: ",response_msg)
-	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=json.dumps(response_msg.getMessage()))
+# 	print("Send message: ",response_msg)
+	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=received_message)
 #	print(status.json())
 
 class FbBotView(generic.View):
@@ -66,19 +65,20 @@ class FbBotView(generic.View):
 
 	def post(self,request,*args,**kwargs):
 		incoming_message = json.loads(self.request.body.decode('utf-8'))
-		print("incoming message", incoming_message)
-		#recipient = incoming_message['recipient']['id']
+		print("incoming message", incoming_message)		
 		for entry in incoming_message['entry']:
 			for message in entry['messaging']:
-				if 'message' in message:
-					print("============= Process ========")
-					print(message)
-					try:
-						receivedMsg = message['message']
-					except ValueError as e:
-						print("Decode error")
-					print("sender: ", message['sender']['id'])
-					print("msg: ", message['message']['text'])
-					print("recipient ", message['recipient']['id'])
-					post_facebook_message(message['sender']['id'],message['message']['text'])
+				receivedMsg = message['message']
+# 				print("sender: ", message['sender']['id'])
+# 				print("msg: ", message['message']['text'])
+# 				print("recipient ", message['recipient']['id'])
+				response_msg = Message(message['sender']['id'])
+				if receivedMsg:
+					if 'image' in receivedMsg:
+						response_msg.makeAttachmentMessage('http://google.com','image')
+					elif 'typing on' in receivedMsg:
+						response_msg.makeTypingOnMessage()
+					else:
+						response_msg.makeTextMessage("How do you turn this on?")
+				post_facebook_message(json.dumps(response_msg.getMessage()))
 		return HttpResponse()
