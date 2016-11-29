@@ -48,8 +48,8 @@ def post_facebook_message(fbid, received_message):
 #	response_msg.makeTextMessage("How do you turn this on?")
 	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
 	print(response_msg)
-	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=response_msg)
-	print(status.json())
+#	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=response_msg)
+#	print(status.json())
 
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
