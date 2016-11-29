@@ -45,8 +45,8 @@ def post_facebook_message(fbid, received_message):
 #	user_details = requests.get(user_details_url,user_details_params).json()
 	post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN 
 	response_msg = Message(fbid)
-	response_msg.sendTypingOn()
-#	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
+	response_msg.makeTextMessage("How do you turn this on?")
+#	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":response_msg.getMessage()})
 	status = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=response_msg)
 	print(status.json())
 

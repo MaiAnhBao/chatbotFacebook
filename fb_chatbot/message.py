@@ -25,30 +25,26 @@ class Message:
     def __init__(self,recipientId):        
         self.messageData['recipient']['id'] = recipientId
         
-    def sendTypingOn(self):    
+    def makeTypingOnMessage(self):    
         self.messageData['sender_action'] = "typing_on"
         
-    def sendTypingOff(self):
+    def makeTypingOffMessage(self):
         self.messageData['sender_action'] = "typing_off"
         del self.messageData['message']
         
-    def sendReadReceipt(self):
+    def makeReadReceiptMessage(self):
         self.messageData['sender_action'] = "mark_seen"
         del self.messageData['message']
         
-    def getImageMessage(self,url):
-        self.messageData['message']['attachment']['type'] = "image"
-        self.messageData['message']['attachment']['payload']['url'] = url
+    def makeAttachmentMessage(self,url,sendType):        
+        self.messageData['message']['attachment']['type'] = sendType
+        self.messageData['message']['attachment']['payload']['url'] = url            
         
-    def getAudioMessage(self,url):
-        self.messageData['message']['attachment']['type'] = "audio"
-        self.messageData['message']['attachment']['payload']['url'] = url
-        
-    def getVideoMessage(self,url):
-        self.messageData['message']['attachment']['type'] = "video"
-        self.messageData['message']['attachment']['payload']['url'] = url    
-        
-    def getTextMessage(self,messageText):
+    def makeTextMessage(self,messageText):
         self.messageData['message']['text'] = messageText
         del self.messageData['message']['attachment']
+        
+    def getMessage(self):
+        return self.messageData
 
+        
