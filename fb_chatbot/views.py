@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.template import Context, loader
 from .config import configParams
 from .message import Message
+from .models import MessageDB
 # Create your views here.
 
 cfg = configParams()
@@ -72,6 +73,8 @@ class FbBotView(generic.View):
 # 				print("sender: ", message['sender']['id'])
 # 				print("msg: ", message['message']['text'])
 # 				print("recipient ", message['recipient']['id'])
+				m = MessageDB(message_text = message['message']['text'],user_id=message['sender']['id'])
+				m.save()
 				response_msg = Message(message['sender']['id'])
 				if receivedMsg:
 					if 'image' in receivedMsg:

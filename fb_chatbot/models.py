@@ -14,6 +14,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=200)
 
-class Message(models.Model):
+class MessageDB(models.Model):
     message_text = models.CharField(max_length=300)
     user_id = models.CharField(max_length=50)    
