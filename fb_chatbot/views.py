@@ -83,5 +83,6 @@ class FbBotView(generic.View):
 						response_msg.makeTypingOnMessage()
 					else:
 						response_msg.makeTextMessage("How do you turn this on?")
+				print(response_msg.getMessage())
 				post_facebook_message(json.dumps(response_msg.getMessage()))
 		return HttpResponse()
