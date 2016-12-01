@@ -64,26 +64,29 @@ class FbBotView(generic.View):
 		print("incoming message", incoming_message)		
 		for entry in incoming_message['entry']:			
 			for message in entry['messaging']:
+				sender_user_id = message['sender']['id']
 				if 'message' not in message:
 					print("Not text message")
 					receivedMsg = "Ohio Gozaimasu"
+					sendTextMessage(sender_user_id, receivedMsg)
+					return				
 				else:				
 					receivedMsg = message['message']['text']
-				sender_user_id = message['sender']['id']
+
 				print("============> Message received: ",receivedMsg)
 				print("============> who send?",sender_user_id)
 # 				print("recipient ", message['recipient']['id'])
-				if receivedMsg:
-					if 'hello ' in receivedMsg or 'hi ' in receivedMsg:
-						sendGreetingMessage(sender_user_id)
-					elif 'image' in receivedMsg:						
-# 						response_msg.makeAttachmentMessage('http://google.com','image')
-						sendAttachmentMessage(sender_user_id, 'image')
-					elif 'typing on' in receivedMsg:
-						sendTypingMessage(sender_user_id,"typing_on")
-					else:
-						sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack")
-		return HttpResponse()
+				
+				if 'hello ' in receivedMsg or 'hi ' in receivedMsg:
+					sendGreetingMessage(sender_user_id)
+				elif 'image' in receivedMsg:						
+# 					response_msg.makeAttachmentMessage('http://google.com','image')
+					sendAttachmentMessage(sender_user_id, 'image')
+				elif 'typing on' in receivedMsg:
+					sendTypingMessage(sender_user_id,"typing_on")
+				else:
+					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack")
+		return
 
 
 def sendGreetingMessage(userId):
