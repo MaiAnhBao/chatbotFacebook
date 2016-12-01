@@ -30,6 +30,7 @@ def post_facebook_message(send_message):
 # 	print("Send message: ",response_msg)
 	try:
 		r = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=send_message)
+		print(r.json())
 		err = r.raise_for_status()
 	except requests.exceptions.Timeout:
 		print("Timeout")
@@ -116,9 +117,8 @@ def sendTypingOnMessage(userId):
 	
 def sendTextMessage(userId, msg):
 	print("Send Text Message function")
-	print("Send from id %s with message %s"%(userId, msg))
+	print("Send from id %s with message '%s'"%(userId, msg))
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(msg)
-	response_msg_text = response_msg.getMessage()
-	print(response_msg_text)
+	response_msg_text = response_msg.getMessage()	
 	post_facebook_message(json.dumps(response_msg_text))
