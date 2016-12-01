@@ -64,6 +64,7 @@ class FbBotView(generic.View):
 		print("incoming message", incoming_message)		
 		for entry in incoming_message['entry']:			
 			if 'message' not in entry['messaging']:
+				print("not message in entry-messaging")
 				sender_user_id = entry['messaging']['sender']['id']
 				print('Sender: ', sender_user_id)
 			for message in entry['messaging']:				
