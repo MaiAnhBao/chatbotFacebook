@@ -116,7 +116,7 @@ def sendTypingOnMessage(userId):
 	
 def sendTextMessage(userId, msg):
 	print("Send Text Message function")
-	print("Send from id %s with message %s",userId, msg)
+	print("Send from id %s with message %s"%(userId, msg))
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(msg)
 	response_msg_text = response_msg.getMessage()
