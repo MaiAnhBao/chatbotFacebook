@@ -114,4 +114,4 @@ def sendTextMessage(userId, message):
 	response_msg.makeTextMessage(message)
 	response_msg_text = response_msg.getMessage()
 	print(response_msg_text)
-	post_facebook_message(response_msg_text)
+	post_facebook_message(json.dumps(response_msg_text))
