@@ -63,8 +63,8 @@ class FbBotView(generic.View):
 			for message in entry['messaging']:
 				receivedMsg = message['message']['text']
 				sender_user_id = message['sender']['id']
-# 				print("sender: ", message['sender']['id'])
-# 				print("msg: ", message['message']['text'])
+				print("============> Message received: ",receivedMsg)
+				print("============> who send?",sender_user_id)
 # 				print("recipient ", message['recipient']['id'])
 				if receivedMsg:
 					if 'hello' in receivedMsg or 'hi' in receivedMsg:
@@ -85,6 +85,7 @@ def sendGreetingMessage(userId):
 	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
 	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
 	user_details = requests.get(user_details_url,user_details_params).json()
+	print(json.dump(user_details))
 	name = user_details['first_name']
 	
 	response_msg_text = greeting_lst[random.randint(len(greeting_lst))]  + name
