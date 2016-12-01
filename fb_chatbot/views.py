@@ -80,6 +80,7 @@ class FbBotView(generic.View):
 
 
 def sendGreetingMessage(userId):
+	print("Send Greeting Message function")
 	greeting_lst = ['Hello', 'Hi', 'Hola']
 	
 	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
@@ -96,6 +97,7 @@ def sendGreetingMessage(userId):
 	post_facebook_message(response_msg_text)
 
 def sendAttachmentMessage(userId, type_msg):
+	print("Send Attachment Message function")
 	response_msg = Message(userId)
 	response_msg.makeAttachmentMessage("http://google.com",type_msg)
 	response_msg_text = response_msg.getMessage()
@@ -103,6 +105,7 @@ def sendAttachmentMessage(userId, type_msg):
 	post_facebook_message(response_msg_text)
 	
 def sendTypingOnMessage(userId):
+	print("Send Typing On Message function")
 	response_msg = Message(userId)
 	response_msg.makeTypingOnMessage()
 	response_msg_text = response_msg.getMessage()
@@ -110,6 +113,7 @@ def sendTypingOnMessage(userId):
 	post_facebook_message(response_msg_text)
 	
 def sendTextMessage(userId, message):
+	print("Send Text Message function")
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(message)
 	response_msg_text = response_msg.getMessage()
