@@ -54,7 +54,7 @@ class FbBotView(generic.View):
 				return HttpResponse("Bonjour, erreur jeton invalide")
 		except Exception as e:
 			print(e)
-			return HttpResponse("Cannot get the value token")
+			return HttpResponse("<p align=center>Cannot get the value token</p>")
 	@method_decorator(csrf_exempt)
 	def dispatch(self, request, *args, **kwargs):
 		return generic.View.dispatch(self,request,*args,**kwargs)
@@ -118,7 +118,14 @@ def sendTypingOnMessage(userId):
 def sendTextMessage(userId, msg):
 	print("Send Text Message function")
 	print("Send from id %s with message '%s'"%(userId, msg))
-	response_msg = Message(userId)
-	response_msg.makeTextMessage(msg)
-	response_msg_text = response_msg.getMessage()	
+	response_msg = json.loads("""
+    {
+    "recipient": {
+        "id": ""
+        },
+    "message": {
+        "text" : ""
+    }}""")
+	response_msg['recipient']['id'] = userId
+	response_msg['message']['text'] = msg	
 	post_facebook_message(json.dumps(response_msg_text))
