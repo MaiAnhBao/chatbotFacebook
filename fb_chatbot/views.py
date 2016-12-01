@@ -64,8 +64,9 @@ class FbBotView(generic.View):
 		print("incoming message", incoming_message)		
 		for entry in incoming_message['entry']:
 			if 'message' not in entry['messaging']:
+				sender_user_id = entry['messaging']['sender']['id']
 				print("Blah Blah")
-				return HttpResponse()
+				sendTextMessage(sender_user_id, "blah blah")
 			for message in entry['messaging']:
 				receivedMsg = message['message']['text']
 				sender_user_id = message['sender']['id']
