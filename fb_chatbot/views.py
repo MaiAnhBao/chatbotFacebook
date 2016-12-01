@@ -36,8 +36,10 @@ def post_facebook_message(send_message):
 	except requests.exceptions.TooManyRedirects:
 		print("Too many redirects")
 	except requests.exceptions.HTTPError as e:
+		print("Http Error Exception")
 		print(e)
 	except requests.exceptions.RequestException as e:
+		print("What is an error?")
 		print(e)
 	if not err and r.status_code == 200:
 		print(r.json())
