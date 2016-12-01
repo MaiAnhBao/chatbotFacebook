@@ -1,4 +1,4 @@
-import json, requests, random, re, hashlib
+import json, requests, random, re
 from django.shortcuts import render
 from django.views import generic
 from django.http.response import HttpResponse
@@ -23,12 +23,13 @@ def error404(request):
 	context = Context({"message":"All: %s" % request,})
 	return HttpResponse(content=template.render(context), content_type='text/html;charset=utf8', status=404)
 
-def post_facebook_message(received_message):
+def post_facebook_message(send_message):
+	print("Message send: ", send_message)
 	post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN	
 #	response_msg = json.dumps({"recipient":{"id":fbid},"message":{"text":received_message}})
 # 	print("Send message: ",response_msg)
 	try:
-		r = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=received_message)
+		r = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=send_message)
 		err = r.raise_for_status()
 	except requests.exceptions.Timeout:
 		print("Timeout")
@@ -90,22 +91,26 @@ def sendGreetingMessage(userId):
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(response_msg_text)
 	response_msg_text = response_msg.getMessage()
+	print(response_msg_text)
 	post_facebook_message(response_msg_text)
 
 def sendAttachmentMessage(userId, type_msg):
 	response_msg = Message(userId)
 	response_msg.makeAttachmentMessage("http://google.com",type_msg)
 	response_msg_text = response_msg.getMessage()
+	print(response_msg_text)
 	post_facebook_message(response_msg_text)
 	
 def sendTypingOnMessage(userId):
 	response_msg = Message(userId)
 	response_msg.makeTypingOnMessage()
 	response_msg_text = response_msg.getMessage()
+	print(response_msg_text)
 	post_facebook_message(response_msg_text)
 	
 def sendTextMessage(userId, message):
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(message)
 	response_msg_text = response_msg.getMessage()
+	print(response_msg_text)
 	post_facebook_message(response_msg_text)
