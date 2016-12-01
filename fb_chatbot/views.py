@@ -30,8 +30,9 @@ def post_facebook_message(send_message):
 # 	print("Send message: ",response_msg)
 	try:
 		r = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=send_message)
-		print(r.json())
+		print(r.json())		
 # 		err = r.raise_for_status()
+		return HttpResponse()
 	except requests.exceptions.Timeout:
 		print("Timeout")
 	except requests.exceptions.TooManyRedirects:
@@ -69,7 +70,7 @@ class FbBotView(generic.View):
 					print("Not text message")
 					receivedMsg = "Ohio Gozaimasu"
 					sendTextMessage(sender_user_id, receivedMsg)
-					return				
+					return 		
 				else:				
 					receivedMsg = message['message']['text']
 
