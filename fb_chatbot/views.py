@@ -76,9 +76,9 @@ class FbBotView(generic.View):
 # 						response_msg.makeAttachmentMessage('http://google.com','image')
 						sendAttachmentMessage(sender_user_id, 'image')
 					elif 'typing on' in receivedMsg:
-						sendTypingOnMessage(sender_user_id)
+						sendTypingMessage(sender_user_id,"typing_on")
 					else:
-						sendTextMessage(sender_user_id, "How do you turn this on?")
+						sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack")
 		return HttpResponse()
 
 
@@ -122,8 +122,8 @@ def sendAttachmentMessage(userId, type_msg):
 	print(response_msg)
 	post_facebook_message(json.dumps(response_msg))
 	
-def sendTypingOnMessage(userId):
-	print("Send Typing On Message function")
+def sendTypingMessage(userId,state):
+	print("Send Typing Message function")
 	print("Send from id %s with typing on"%(userId))
 	response_msg = json.loads("""
     {
@@ -134,7 +134,7 @@ def sendTypingOnMessage(userId):
         }       
     }""")
 	response_msg['recipient']['id'] = userId
-	response_msg['sender_action'] = "typing_on"
+	response_msg['sender_action'] = state
 	
 	print(response_msg)
 	post_facebook_message(json.dumps(response_msg))
