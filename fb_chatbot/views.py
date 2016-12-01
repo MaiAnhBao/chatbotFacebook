@@ -83,13 +83,13 @@ def sendGreetingMessage(userId):
 	print("Send Greeting Message function")
 	greeting_lst = ['Hello', 'Hi', 'Hola']
 	
-	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
-	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
-	user_details = requests.get(user_details_url,user_details_params).json()
-	print(json.dump(user_details))
-	name = user_details['first_name']
+# 	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
+# 	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
+# 	user_details = requests.get(user_details_url,user_details_params).json()
+# 	print(json.dump(user_details))
+# 	name = user_details['first_name']
 	
-	response_msg_text = greeting_lst[random.randint(len(greeting_lst))]  + name
+	response_msg_text = greeting_lst[random.randint(len(greeting_lst))]
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(response_msg_text)
 	response_msg_text = response_msg.getMessage()
