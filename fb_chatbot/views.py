@@ -114,10 +114,11 @@ def sendTypingOnMessage(userId):
 	print(response_msg_text)
 	post_facebook_message(response_msg_text)
 	
-def sendTextMessage(userId, message):
+def sendTextMessage(userId, msg):
 	print("Send Text Message function")
+	print("Send from id %s with message %s",userId, msg)
 	response_msg = Message(userId)
-	response_msg.makeTextMessage(message)
+	response_msg.makeTextMessage(msg)
 	response_msg_text = response_msg.getMessage()
 	print(response_msg_text)
 	post_facebook_message(json.dumps(response_msg_text))
