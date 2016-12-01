@@ -65,7 +65,7 @@ class FbBotView(generic.View):
 		for entry in incoming_message['entry']:
 			if 'message' not in entry['messaging']:
 				print("Blah Blah")
-				sender_user_id = entry['message']['sender']['id']
+				sender_user_id = entry['messaging']['sender']['id']
 				print(sender_user_id)				
 				sendTextMessage(sender_user_id, "blah blah")
 			for message in entry['messaging']:
