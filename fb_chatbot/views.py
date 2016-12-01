@@ -31,7 +31,7 @@ def post_facebook_message(send_message):
 	try:
 		r = requests.post(post_message_url, headers = {"Content-Type": "application/json"},data=send_message)
 		print(r.json())
-		err = r.raise_for_status()
+# 		err = r.raise_for_status()
 	except requests.exceptions.Timeout:
 		print("Timeout")
 	except requests.exceptions.TooManyRedirects:
@@ -42,8 +42,8 @@ def post_facebook_message(send_message):
 	except requests.exceptions.RequestException as e:
 		print("What is an error?")
 		print(e)
-	if not err and r.status_code == 200:
-		print(r.json())
+# 	if not err and r.status_code == 200:
+# 		print(r.json())
 		
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
