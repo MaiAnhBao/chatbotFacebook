@@ -67,7 +67,7 @@ class FbBotView(generic.View):
 				print("============> who send?",sender_user_id)
 # 				print("recipient ", message['recipient']['id'])
 				if receivedMsg:
-					if 'hello' in receivedMsg or 'hi' in receivedMsg:
+					if 'hello ' in receivedMsg or 'hi ' in receivedMsg:
 						sendGreetingMessage(sender_user_id)
 					elif 'image' in receivedMsg:						
 # 						response_msg.makeAttachmentMessage('http://google.com','image')
