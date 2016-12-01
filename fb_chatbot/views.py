@@ -101,19 +101,43 @@ def sendGreetingMessage(userId):
 
 def sendAttachmentMessage(userId, type_msg):
 	print("Send Attachment Message function")
-	response_msg = Message(userId)
-	response_msg.makeAttachmentMessage("http://google.com",type_msg)
-	response_msg_text = response_msg.getMessage()
-	print(response_msg_text)
-	post_facebook_message(response_msg_text)
+	print("Send from id %s with type '%s'"%(userId, type_msg))
+	response_msg = json.loads("""
+    {
+    "recipient": {
+        "id": ""
+        },
+    "message": {
+    	"attachment": {
+            "type": "",
+            "payload": {
+                "url": ""
+            }
+        }        
+    }}""")
+	response_msg['recipient']['id'] = userId
+	response_msg['message']['attachment']['type'] = type_msg
+	response_msg['message']['attachment']['payload']['url'] = "http://google.com"
+	
+	print(response_msg)
+	post_facebook_message(json.dumps(response_msg))
 	
 def sendTypingOnMessage(userId):
 	print("Send Typing On Message function")
-	response_msg = Message(userId)
-	response_msg.makeTypingOnMessage()
-	response_msg_text = response_msg.getMessage()
-	print(response_msg_text)
-	post_facebook_message(response_msg_text)
+	print("Send from id %s with typing on"%(userId))
+	response_msg = json.loads("""
+    {
+    "recipient": {
+        "id": ""
+        },
+    "sender_action": ""
+        }       
+    }""")
+	response_msg['recipient']['id'] = userId
+	response_msg['sender_action'] = "typing_on"
+	
+	print(response_msg)
+	post_facebook_message(json.dumps(response_msg))
 	
 def sendTextMessage(userId, msg):
 	print("Send Text Message function")
@@ -128,4 +152,4 @@ def sendTextMessage(userId, msg):
     }}""")
 	response_msg['recipient']['id'] = userId
 	response_msg['message']['text'] = msg	
-	post_facebook_message(json.dumps(response_msg_text))
+	post_facebook_message(json.dumps(response_msg))
