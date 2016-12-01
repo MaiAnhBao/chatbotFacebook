@@ -65,7 +65,7 @@ class FbBotView(generic.View):
 		for entry in incoming_message['entry']:
 			for message in entry['messaging']:
 				receivedMsg = message['message']['text']
-				sender_user_id = message['sender']['id']
+				sender_user_id = message['recipient']['id']
 				print("============> Message received: ",receivedMsg)
 				print("============> who send?",sender_user_id)
 # 				print("recipient ", message['recipient']['id'])
