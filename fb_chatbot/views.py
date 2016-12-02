@@ -100,6 +100,8 @@ def sendGreetingMessage(userId):
 	print(json.dump(user_details))
 	first_name = user_details['first_name']
 	
+	print(first_name)
+	
 	response_msg_text = greeting_lst[random.randint(len(greeting_lst))] + first_name
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(response_msg_text)
