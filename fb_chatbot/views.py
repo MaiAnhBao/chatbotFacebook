@@ -139,8 +139,7 @@ def sendTypingMessage(userId,state):
     "recipient": {
         "id": ""
         },
-    "sender_action": ""
-        }       
+    "sender_action": ""               
     }""")
 	response_msg['recipient']['id'] = userId
 	response_msg['sender_action'] = state
