@@ -45,7 +45,7 @@ def post_facebook_message(send_message):
 		print(e)
 # 	if not err and r.status_code == 200:
 # 		print(r.json())
-	return HttpResponse()
+# 	return HttpResponse()
 		
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
@@ -87,8 +87,8 @@ class FbBotView(generic.View):
 				elif 'typing on' in receivedMsg:
 					sendTypingMessage(sender_user_id,"typing_on")
 				else:
-					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack" + receivedMsg)
-		return
+					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack " + receivedMsg)
+		return HttpResponse()
 
 
 def sendGreetingMessage(userId):
