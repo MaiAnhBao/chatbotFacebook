@@ -69,8 +69,8 @@ class FbBotView(generic.View):
 				if 'message' not in message:
 					print("Not text message")
 					receivedMsg = "Ohio Gozaimasu"
-					sendTextMessage(sender_user_id, receivedMsg)
-					return 		
+# 					sendTextMessage(sender_user_id, receivedMsg)
+# 					return 		
 				else:				
 					receivedMsg = message['message']['text']
 
