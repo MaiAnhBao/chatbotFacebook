@@ -75,19 +75,19 @@ class FbBotView(generic.View):
 				else:				
 					receivedMsg = message['message']['text']
 
-				print("============> Message received: ",receivedMsg)
-				print("============> who send?",sender_user_id)
+					print("============> Message received: ",receivedMsg)
+					print("============> who send?",sender_user_id)
 # 				print("recipient ", message['recipient']['id'])
 				
-				if 'hello ' in receivedMsg or 'hi ' in receivedMsg:
-					sendGreetingMessage(sender_user_id)
-				elif 'image' in receivedMsg:						
+					if 'hello ' in receivedMsg or 'hi ' in receivedMsg:
+						sendGreetingMessage(sender_user_id)
+					elif 'image' in receivedMsg:						
 # 					response_msg.makeAttachmentMessage('http://google.com','image')
-					sendAttachmentMessage(sender_user_id, 'image')
-				elif 'typing on' in receivedMsg:
-					sendTypingMessage(sender_user_id,"typing_on")
-				else:
-					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack " + receivedMsg)
+						sendAttachmentMessage(sender_user_id, 'image')
+					elif 'typing on' in receivedMsg:
+						sendTypingMessage(sender_user_id,"typing_on")
+					else:
+						sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack " + receivedMsg)
 		return HttpResponse()
 
 
