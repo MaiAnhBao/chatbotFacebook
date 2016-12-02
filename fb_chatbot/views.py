@@ -45,6 +45,7 @@ def post_facebook_message(send_message):
 		print(e)
 # 	if not err and r.status_code == 200:
 # 		print(r.json())
+	return HttpResponse()
 		
 class FbBotView(generic.View):
 	def get(self, request, *args, **kwargs):
