@@ -68,10 +68,7 @@ class FbBotView(generic.View):
 			for message in entry['messaging']:
 				sender_user_id = message['sender']['id']
 				if 'message' not in message:
-					print("Not text message")
-					receivedMsg = "Ohio Gozaimasu"
-# 					sendTextMessage(sender_user_id, receivedMsg)
-# 					return 		
+					print("Not text message") 					 		
 				else:				
 					receivedMsg = message['message']['text']
 
@@ -86,6 +83,8 @@ class FbBotView(generic.View):
 						sendAttachmentMessage(sender_user_id, 'image')
 					elif 'typing on' in receivedMsg:
 						sendTypingMessage(sender_user_id,"typing_on")
+					elif 'typing off' in receivedMsg:
+						sendTypingMessage(sender_user_id,"typing_off")	
 					else:
 						sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack " + receivedMsg)
 		return HttpResponse()
@@ -95,13 +94,13 @@ def sendGreetingMessage(userId):
 	print("Send Greeting Message function")
 	greeting_lst = ['Hello', 'Hi', 'Hola']
 	
-# 	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
-# 	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
-# 	user_details = requests.get(user_details_url,user_details_params).json()
-# 	print(json.dump(user_details))
-# 	name = user_details['first_name']
+	user_details_url = "https://graph.facebook.com/v2.6/%s"%userId
+	user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':PAGE_ACCESS_TOKEN}
+	user_details = requests.get(user_details_url,user_details_params).json()
+	print(json.dump(user_details))
+	first_name = user_details['first_name']
 	
-	response_msg_text = greeting_lst[random.randint(len(greeting_lst))]
+	response_msg_text = greeting_lst[random.randint(len(greeting_lst))] + first_name
 	response_msg = Message(userId)
 	response_msg.makeTextMessage(response_msg_text)
 	response_msg_text = response_msg.getMessage()
@@ -122,7 +121,8 @@ def sendAttachmentMessage(userId, type_msg):
             "payload": {
                 "url": ""
             }
-        }        
+        }    
+    "filedata": ""    
     }}""")
 	response_msg['recipient']['id'] = userId
 	response_msg['message']['attachment']['type'] = type_msg
