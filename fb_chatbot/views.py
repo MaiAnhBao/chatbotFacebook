@@ -86,7 +86,7 @@ class FbBotView(generic.View):
 				elif 'typing on' in receivedMsg:
 					sendTypingMessage(sender_user_id,"typing_on")
 				else:
-					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack")
+					sendTextMessage(sender_user_id, "How do you turn this on? Robinhood? lumberjack" + receivedMsg)
 		return
 
 
